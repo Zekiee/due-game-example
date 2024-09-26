@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option go_package = "due-game-example/shared/pb/pb_match";
+
+package pb_match;
+
+message EchoReq {
+  string msg = 1; // 消息内容
+}
+
+message EchoRes {
+  int64 uid = 1; // 用户ID
+  string msg = 2; // 消息内容
+}

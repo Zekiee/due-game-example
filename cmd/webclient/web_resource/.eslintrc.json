@@ -1,0 +1,19 @@
+// In your .eslintrc.json
+{
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "extends": [
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module",
+        "project": "./tsconfig.json" // Ensure this path is correct
+    },
+    "rules": {
+        "@typescript-eslint/no-unnecessary-type-constraint": "off",
+        "@typescript-eslint/ban-ts-comment": "off"
+    }
+}

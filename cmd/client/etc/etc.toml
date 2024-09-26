@@ -1,0 +1,35 @@
+[cluster]
+    # 集群客户端配置，常用于调试使用
+    [cluster.client]
+        # 实例ID，网关集群中唯一。不填写默认自动生成唯一的实例ID
+        id = ""
+        # 实例名称
+        name = "client"
+        # 编解码器。可选：json | proto
+        codec   = "proto"
+        timeout = 600
+[network]
+    [network.ws]
+        [network.ws.client]
+            # 拨号地址
+            url = "ws://127.0.0.1:3553"
+            # 最大消息长度（字节），默认1kb
+            maxMsgLen = 1024
+            # 握手超时时间（秒）
+            handshakeTimeout = "10s"
+            # 是否启用心跳，默认不启用
+            heartbeat = true
+            # 心跳间隔时间（秒），默认为10秒
+            heartbeatInterval = "1s"
+[log]
+    file              = "./log/due.log"              # 日志输出文件
+    level             = "debug"                      # 日志输出级别，可选：debug | info | warn | error | fatal | panic
+    format            = "text"                       # 日志输出格式，可选：text | json
+    stdout            = true                         # 是否输出到终端
+    timeFormat        = "2006/01/02 15:04:05.000000" # 时间格式，标准库时间格式
+    stackLevel        = "error"                      # 堆栈的最低输出级别，可选：debug | info | warn | error | fatal | panic
+    fileMaxAge        = "2d"                         # 文件最大留存时间，d:天、h:时、m:分、s:秒
+    fileMaxSize       = 100                          # 文件最大尺寸限制，单位（MB）
+    fileCutRule       = "day"                        # 文件切割方式
+    callerFullPath    = true                         # 是否启用调用文件全路径
+    classifiedStorage = true                         # 是否启用分级存储

@@ -1,0 +1,86 @@
+[cluster]
+    [cluster.gate] # 集群网关配置
+        id      = ""     # 实例ID，网关集群中唯一。不填写默认自动生成唯一的实例ID
+        name    = "gate" # 实例名称
+        timeout = 600
+
+[transport]
+    [transport.rpcx] # RPCX相关配置
+        [transport.rpcx.server] # RPCX服务器相关配置
+            addr = ":0" # 服务器监听地址
+
+[packet]
+    byteOrder       = "big" # 字节序，little | big
+    seqBytes        = 2     # 序列号字节长度（字节）
+    serverTypeBytes = 2     # 服务器类型字节长度（字节）
+    routeBytes      = 2     # 路由字节长度（字节）
+
+[log]
+    file              = "./log/due.log"              # 日志输出文件
+    level             = "debug"                      # 日志输出级别，可选：debug | info | warn | error | fatal | panic
+    format            = "text"                       # 日志输出格式，可选：text | json
+    stdout            = true                         # 是否输出到终端
+    timeFormat        = "2006/01/02 15:04:05.000000" # 时间格式，标准库时间格式
+    stackLevel        = "error"                      # 堆栈的最低输出级别，可选：debug | info | warn | error | fatal | panic
+    fileMaxAge        = "2d"                         # 文件最大留存时间，d:天、h:时、m:分、s:秒
+    fileMaxSize       = 100                          # 文件最大尺寸限制，单位（MB）
+    fileCutRule       = "day"                        # 文件切割方式
+    callerFullPath    = true                         # 是否启用调用文件全路径
+    classifiedStorage = true                         # 是否启用分级存储
+    # zap日志组件。以下配置项如果不存在，则会使用log域中的默认配置项；如果均未配置，则会使用系统默认配置
+
+[locate]
+    [locate.redis]
+        addrs = [
+            "127.0.0.1:6379",
+        ] # 客户端连接地址
+        db = 0 # 数据库号
+        username = "" # 用户名
+        password = "" # 密码
+        maxRetries = 3 # 最大重试次数
+        prefix = "due" # key前缀
+
+[network]
+    [network.ws]
+        [network.ws.server]
+            addr = ":3553" # 服务器监听地址
+            path = "/ws" # 客户端连接路径
+            maxMsgLen = 1024 # 最大消息长度（字节），默认1kb
+            maxConnNum = 50001 # 服务器最大连接数
+            keyFile = "" # 秘钥文件
+            certFile = "" # 证书文件
+            origins = [
+                "*",
+            ] # 跨域检测，空数组时不允许任何连接升级成websocket，未设置此参数时允许所有的链接升级成websocket
+            heartbeatCheck = true # 是否启用心跳检测，默认不启用
+            heartbeatInterval = "10s" # 心跳检测间隔时间（秒），默认为10秒
+            handshakeTimeout = "10s" # 握手超时时间（秒），默认10秒
+            heartbeatWithServerTime = true # 发送服务器时间
+
+[registry]
+    [registry.consul]
+        # 客户端连接地址，默认为127.0.0.1:8500
+        addr = "127.0.0.1:8500"
+        # 是否启用健康检查，默认为true
+        healthCheck = true
+        # 健康检查时间间隔（秒），仅在启用健康检查后生效，默认为10
+        healthCheckInterval = 10
+        # 健康检查超时时间（秒），仅在启用健康检查后生效，默认为5
+        healthCheckTimeout = 5
+        # 是否启用心跳检查，默认为true
+        heartbeatCheck = true
+        # 心跳检查时间间隔（秒），仅在启用心跳检查后生效，默认为10
+        heartbeatCheckInterval = 10
+        # 健康检测失败后自动注销服务时间（秒），默认为30
+        deregisterCriticalServiceAfter = 30
+
+# 配置中心
+[config]
+    # consul配置中心
+    [config.consul]
+        # 客户端连接地址
+        addr = "127.0.0.1:8500"
+        # 路径。默认为config
+        path = "config"
+        # 读写模式。可选：read-only | write-only | read-write，默认为read-only
+        mode = "read-only"

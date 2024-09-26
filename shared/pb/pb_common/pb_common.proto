@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "due-game-example/shared/pb/pb_common";
+
+package pb_common;
+
+
+enum ROUTE {
+  ROUTE_NONE = 0; // EMPTY
+  LOBBY_ECHO = 1001; // ECHO请求
+  LOBBY_LOGIN = 1002; // 登录请求
+
+  MATCH_ECHO = 2001; // ECHO请求
+  MATCH_JOIN = 2002; // 加入匹配队列
+
+  RPSGAME_ECHO = 3001; // ECHO请求
+  RPSGAME_START = 3002; // 开始游戏
+  RPSGAME_PLAY = 3003; // 玩家出拳
+  RPSGAME_RESULT = 3004; // 游戏结果
+}
