@@ -2,24 +2,20 @@
 # due-game-example
 
 ## due框架的游戏示例
-包含功能
-- [ ] 客户端账号登录
-- [ ] 匹配, 创建, 加入房间
-- [ ] 剪刀石头布游戏
 
 主要涉及
-- gate示例
-- node示例
-- client示例
-- admin示例
-- mesh示例
-- mysql使用
-- consul使用
-- redis使用
-- node内的 routeGroup 示例
-- node内的 route wrap 示例 @感谢群友提供
-- node内的 middleware 示例
-- 使用一个main.go启动多个服务，用于开发环境
+[√] gate示例
+[√] node示例
+[√] client示例
+[√] admin示例
+[x] mesh示例
+[x] mysql使用
+[√] consul使用
+[x] redis使用
+[√] node内的 routeGroup 示例
+[√] node内的 route wrap 示例 @感谢群友提供
+[√] node内的 middleware 示例
+[√] 使用一个main.go启动多个服务，用于开发环境
 
 
 ## proto编译环境
